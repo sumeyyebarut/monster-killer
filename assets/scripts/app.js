@@ -12,8 +12,6 @@ const LOG_EVENT_PLAYER_HEAL='PLAYER_HEAL';
 const LOG_EVENT_GAME_OVER='GAME_OVER';
 
 
-
-
 const enteredValue=prompt('Maximum life for you and monster.','100');
 
 let battleLog=[];
@@ -87,16 +85,16 @@ function EndRound(){
     }
 };
 function monsterAttack(mode){
-    let maxDamage;
-    let logEvent;
+    const maxDamage= mode==='MODE_ATTACK'? ATTACK_VALUE:STRONG_ATTACK_VALUE;    
+    const logEvent =mode==='MODE_ATTACK'? STRONG_ATTACK_VALU:LOG_EVENT_STRONG_PLAYER_ATTACK;
 
-    if(mode===MODE_ATTACK){
-        maxDamage=ATTACK_VALUE;
-        logEvent=LOG_EVENT_PLAYER_ATTACK;
-    }else if(mode===MODE_STRONG_ATTACK){
-        maxDamage=STRONG_ATTACK_VALUE;
-        logEvent=LOG_EVENT_STRONG_PLAYER_ATTACK;
-    }
+    // if(mode===MODE_ATTACK){
+    //     maxDamage=ATTACK_VALUE;
+    //     logEvent=LOG_EVENT_PLAYER_ATTACK;
+    // }else if(mode===MODE_STRONG_ATTACK){
+    //     maxDamage=STRONG_ATTACK_VALUE;
+    //     logEvent=LOG_EVENT_STRONG_PLAYER_ATTACK;
+    // }
     const damage=dealMonsterDamage(maxDamage);
     currentMonsterHealht-=damage;
     writeLog(logEvent,damage,currentMonsterHealht,currentPlayerHealht);
